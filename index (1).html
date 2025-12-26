@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>1132954 -FinalTerm</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="title">
+        <h1>1132954 - FinalTerm（Go 9×9）</h1>
+        <p class="subtitle">黑先（你） vs 白後（電腦）｜兩次連續讓子進入終局決算</p>
+      </div>
+
+      <div class="status">
+        <div class="row">
+          <span id="turnDot" class="dot"></span>
+          <span id="turnText">輪到：黑（你）</span>
+        </div>
+        <div class="row small">
+          <span>黑提子：<b id="capB">0</b></span>
+          <span>白提子：<b id="capW">0</b></span>
+          <span>讓子：<b id="passCount">0</b></span>
+        </div>
+        <div id="warning" class="warning"></div>
+      </div>
+
+      <div class="actions">
+        <button id="btnPass" class="btn">讓子（Pass）</button>
+        <button id="btnUndo" class="btn secondary">悔棋（Undo）</button>
+        <button id="btnNew" class="btn danger">新局</button>
+      </div>
+    </header>
+
+    <main class="main">
+      <section class="boardWrap">
+        <canvas id="board" width="720" height="720" aria-label="go-board"></canvas>
+        <div id="overlay" class="overlay hidden">
+          <div class="card">
+            <h2>終局決算（可點棋串標記死棋）</h2>
+            <p class="muted">
+              點選棋串可切換「死棋/活棋」。確認後按「結算」。
+            </p>
+
+            <div class="scoreRow">
+              <div>黑：<b id="scoreB">0</b></div>
+              <div>白：<b id="scoreW">0</b></div>
+            </div>
+
+            <div class="overlayBtns">
+              <button id="btnScore" class="btn">結算</button>
+              <button id="btnBackToGame" class="btn secondary">返回對局（取消終局）</button>
+              <button id="btnNew2" class="btn danger">新局</button>
+            </div>
+            <div id="scoreDetail" class="detail"></div>
+          </div>
+        </div>
+      </section>
+
+      <aside class="side">
+        <div class="panel">
+          <h3>規則</h3>
+          <ul>
+            <li>9×9，交叉點落子</li>
+            <li>不可自殺；simple ko：不可立即回到上一手局面</li>
+            <li>連續兩次讓子（Pass）→ 進入終局決算</li>
+            <li>終局可手動標記死棋，再算地盤與提子</li>
+          </ul>
+        </div>
+
+        <div class="panel">
+          <h3>提示</h3>
+          <ul>
+            <li>若出現「叫吃」警告：代表某棋串只剩 1 氣</li>
+            <li>終局決算：先把死棋點掉，再按結算</li>
+          </ul>
+        </div>
+      </aside>
+    </main>
+
+    <footer class="footer">
+      <span>© FinalTerm Go9</span>
+      <span class="muted">（建議用 Chrome/Edge 開啟）</span>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
